@@ -1,5 +1,6 @@
 package com.appsenseca.pageobjet;
 
+import com.appsenseca.util.WebUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,27 +16,21 @@ import java.util.concurrent.TimeUnit;
 public class SignInPage {
 
     public void fillInUsername(WebDriver driver, String mail){
-    WebElement usernameTextbox = driver.findElement(By.id("Email"));
-    usernameTextbox.clear();
-    usernameTextbox.sendKeys(mail);
+        WebUtil.clearAndSendKeys(driver,By.id("Email"),mail);
 
 }
     public void clickNextButton(WebDriver driver){
-        WebElement nextButton = driver.findElement(By.id("next"));
-        nextButton.click();
+        WebUtil.click(driver,By.id("next"));
+
     }
     public void fillPassword(WebDriver driver, String psw){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        WebElement passwordTextbox = driver.findElement(By.id("Passwd"));
-        passwordTextbox.clear();
-        passwordTextbox.sendKeys(psw);
+        WebUtil.clearAndSendKeys(driver,(By.id("Passwd")),psw);
     }
     public EmailHomepage clickSignInButton(WebDriver driver)  {
-        WebElement signInButton = driver.findElement(By.id("signIn"));
-        signInButton.click();
+        WebUtil.click(driver,By.id("signIn"));
         //Thread.sleep(20000);
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("Inbox")));
+        WebUtil.waitForElementVisible(driver,By.partialLinkText("Inbox"));
         return PageFactory.initElements(driver,EmailHomepage.class);
     }
 

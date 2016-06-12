@@ -1,5 +1,6 @@
 package com.appsenseca.pageobjet;
 
+import com.appsenseca.util.WebUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,12 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class EmailHomepage {
 
     public SignInPage signOut(WebDriver driver) {
-        WebElement profileButton =  driver.findElement(By.cssSelector("span[class='gb_3a gbii']"));
-        profileButton.click();
-        WebElement signOutButton = driver.findElement(By.id("gb_71"));
-        signOutButton.click();
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signIn")));
+        WebUtil.click(driver,By.cssSelector("span[class='gb_3a gbii']"));
+
+        WebUtil.click(driver,By.id("gb_71"));
+
+        WebUtil.waitForElementVisible(driver,By.id("signIn"));
 
         return PageFactory.initElements(driver,SignInPage.class);
     }
@@ -29,40 +29,34 @@ public class EmailHomepage {
     }
 
     public void clickComposeButton(WebDriver driver) {
-        WebElement composeButton = driver.findElement(By.cssSelector("div[role='button'][gh='cm']"));
-        composeButton.click();
+        WebUtil.click(driver,By.cssSelector("div[role='button'][gh='cm']"));
+
     }
 
     public void enterEmailTo(WebDriver driver, String to) {
-        WebElement toTextbox = driver.findElement(By.cssSelector("textarea[aria-label='To']"));
-        toTextbox.sendKeys(to);
-        toTextbox.sendKeys(Keys.ENTER);
+        WebUtil.clearAndSendKeys(driver,By.cssSelector("textarea[aria-label='To']"), to);
+
     }
 
     public void enterSubject(WebDriver driver, String sbj) {
-        WebElement subjectInput = driver.findElement(By.cssSelector("input[name='subjectbox']"));
-        //final String subject = sbj;
-        subjectInput.clear();
-        subjectInput.sendKeys(sbj);
+        WebUtil.clearAndSendKeys(driver,By.cssSelector("input[name='subjectbox']"),sbj);
+
     }
 
     public void enterEmailBody(WebDriver driver, String body) {
-        WebElement bodyTextArea =  driver.findElement(By.cssSelector("div[aria-label='Message Body']"));
-        //final String bodytext = "This emial is for automation testing";
-        bodyTextArea.clear();
-        bodyTextArea.sendKeys(body);
+        WebUtil.clearAndSendKeys(driver,By.cssSelector("div[aria-label='Message Body']"),body);
+
     }
 
     public void clickSendButton(WebDriver driver) {
-        WebElement sendButton = driver.findElement(By.cssSelector("div[aria-label*='Send']"));
-        sendButton.click();
+        WebUtil.click(driver,By.cssSelector("div[aria-label*='Send']"));
+
     }
 
     public void goToSentMail(WebDriver driver, String title) throws InterruptedException {
-        WebElement sentMailButton = driver.findElement(By.linkText("Sent Mail"));
-        sentMailButton.click();
+        WebUtil.click(driver,By.linkText("Sent Mail"));
         Thread.sleep(10000);
-        WebElement sentMailCheck =  driver.findElement(By.xpath("//tr[td//span = '"+title + "']"));
-        sentMailCheck.click();
+        WebUtil.click(driver,By.xpath("//tr[td//span = '"+title + "']"));
+
     }
 }
