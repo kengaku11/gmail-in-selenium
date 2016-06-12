@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="47705d2c-7537-43e4-8833-e91583faef2b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/appsenseca/pageobjet/EmailHomepage.java" afterPath="$PROJECT_DIR$/src/main/java/com/appsenseca/pageobjet/EmailHomepage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/appsenseca/pageobjet/SignInPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/appsenseca/pageobjet/SignInPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/appsenseca/util/WebUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/appsenseca/util/WebUtil.java" />
-    </list>
+    <list default="true" id="47705d2c-7537-43e4-8833-e91583faef2b" name="Default" comment="" />
     <ignored path="gmail-webui-test.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
