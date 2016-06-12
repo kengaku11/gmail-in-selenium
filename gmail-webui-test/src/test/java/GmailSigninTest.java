@@ -1,20 +1,15 @@
+import com.appsenseca.categories.Critical;
+import com.appsenseca.categories.Major;
 import com.appsenseca.pageobjet.EmailHomepage;
 import com.appsenseca.pageobjet.SignInPage;
 import com.appsenseca.util.WebUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Bryan on 6/12/2016.
@@ -22,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class GmailSigninTest {
     WebDriver driver = new FirefoxDriver();
 
+    @Category({Critical.class})
     @Test
     public void gmailLoginShouldBeSuccessful() throws InterruptedException {
         //Go to Email
@@ -37,13 +33,14 @@ public class GmailSigninTest {
         //sign out
         signInPage = emailHomepage.signOut(driver);
         //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        Thread.sleep(20000);
+        Thread.sleep(10000);
         //verified usr did sign out
         //WebDriverWait wait = new WebDriverWait(driver, 30);
         Assert.assertTrue("Signin button should exits", emailHomepage.isInboxExist(driver));
         //Assert.assertTrue("Signin butotn should exits", driver.findElements(By.id("signIn")).size()>0);
     }
 
+    @Category({Major.class})
     @Test
     public void gmailSendAndRecieveEmailTest() throws InterruptedException {
         SignInPage signInPage = WebUtil.goToSignInPage(driver);

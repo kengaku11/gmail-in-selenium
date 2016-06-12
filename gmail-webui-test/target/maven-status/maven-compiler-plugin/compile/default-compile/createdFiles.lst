@@ -1,0 +1,5 @@
+com\appsenseca\categories\Major.class
+com\appsenseca\pageobjet\SignInPage.class
+com\appsenseca\categories\Critical.class
+com\appsenseca\pageobjet\EmailHomepage.class
+com\appsenseca\util\WebUtil.class

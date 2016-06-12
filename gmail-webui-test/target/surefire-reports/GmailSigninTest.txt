@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: GmailSigninTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 72.531 sec <<< FAILURE! - in GmailSigninTest
+gmailLoginShouldBeSuccessful(GmailSigninTest)  Time elapsed: 72.53 sec  <<< ERROR!
+org.openqa.selenium.UnhandledAlertException: 
+Unexpected modal dialog (text: This page is asking you to confirm that you want to leave - data you have entered may not be saved.): This page is asking you to confirm that you want to leave - data you have entered may not be saved.
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'TNH', ip: '192.168.1.12', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_74'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=40.0.2, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: af980a1e-3f5c-4e6b-af28-dc33290ffc00
+*** Element info: {Using=id, value=signIn}
+	at GmailSigninTest.gmailLoginShouldBeSuccessful(GmailSigninTest.java:34)
+
