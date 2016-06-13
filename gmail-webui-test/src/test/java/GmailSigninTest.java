@@ -1,3 +1,6 @@
+import com.appsenseca.pageobjet.EmailHomepage;
+import com.appsenseca.pageobjet.SignInPage;
+import com.appsenseca.util.WebUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,45 +24,24 @@ public class GmailSigninTest {
 
     @Test
     public void gmailLoginShouldBeSuccessful() throws InterruptedException {
-        //Go to gmail web
-
-        driver.get("http://gmail.com");
-        //Fill in usr/pass
-        WebElement usernameTextbox = driver.findElement(By.id("Email"));
-        usernameTextbox.clear();
-        usernameTextbox.sendKeys("taolavua12@gmail.com");
-
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        WebElement nextButton = driver.findElement(By.id("next"));
-        nextButton.click();
+        //Go to Email
+        SignInPage signInPage = WebUtil.goToSignInPage(driver);
+        signInPage.fillInUsername(driver, "taolavua12@gmail.com");
+        signInPage.clickNextButton(driver);
+        signInPage.fillPassword(driver,"thanhylau1");
         //Click signin
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        WebElement passwordTextbox = driver.findElement(By.id("Passwd"));
-        passwordTextbox.clear();
-        passwordTextbox.sendKeys("thanhylau1");
-
-
-        WebElement signInButton = driver.findElement(By.id("signIn"));
-        signInButton.click();
-
-        Thread.sleep(20000);
+        //SignInPage.clickSignInButton(driver);
+        EmailHomepage emailHomepage = signInPage.clickSignInButton(driver);
         //verify usr did sign in
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("Inbox")));
         Assert.assertTrue("Inbox should exit", driver.findElements(By.partialLinkText("Inbox")).size() > 0);
-
         //sign out
-        WebElement profileButton =  driver.findElement(By.cssSelector("span[class='gb_3a gbii']"));
-        profileButton.click();
-
+        signInPage = emailHomepage.signOut(driver);
         //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Thread.sleep(20000);
-
-        WebElement signOutButton = driver.findElement(By.id("gb_71"));
-        signOutButton.click();
-
         //verified usr did sign out
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signIn")));
-        Assert.assertTrue("Signin butotn should exits", driver.findElements(By.id("signIn")).size()>0);
+        //WebDriverWait wait = new WebDriverWait(driver, 30);
+        Assert.assertTrue("Signin button should exits", emailHomepage.isInboxExist(driver));
+        //Assert.assertTrue("Signin butotn should exits", driver.findElements(By.id("signIn")).size()>0);
     }
 
     @Test
